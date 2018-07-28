@@ -31,6 +31,7 @@ JQ_DOWNLOAD_URI="https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSIO
 JQ_DL_ARCHIVE="jq-linux64"
 
 # Download jq
+echo "Downloading ${JQ_DOWNLOAD_URI}/${JQ_DL_ARCHIVE}"
 wget ${JQ_DOWNLOAD_URI}/${JQ_DL_ARCHIVE} --no-cookies --no-check-certificate -q -O bin/jq
 chmod +x bin/jq
 
