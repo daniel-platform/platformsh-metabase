@@ -16,3 +16,8 @@ mounts:
 web:
   commands:
     start: "sh ./start.sh"
+    
+hooks:
+    build: "bash ${PLATFORM_APP_DIR}/build.sh"
+    deploy: "sh ${PLATFORM_APP_DIR}/deploy.sh"
+

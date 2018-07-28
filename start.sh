@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Load header
+. ./header.inc
+
 # Port to Listen on
 export MB_JETTY_PORT=${PORT}
 
@@ -11,8 +14,12 @@ export MB_DB_USER=$(bin/json_env PLATFORM_RELATIONSHIPS metabasedb.metabasedb.us
 export MB_DB_PASS=$(bin/json_env PLATFORM_RELATIONSHIPS metabasedb.metabasedb.password)
 export MB_DB_HOST=$(bin/json_env PLATFORM_RELATIONSHIPS metabasedb.metabasedb.host)
 
-# Limit Heapsize
-export JAVA_TOOL_OPTIONS="-Xmx768m -Xss1024k"
+# Grab memory limits
+export MEM_AVAILABLE=$(bin/jq .info.limits.memory /run/config.json)
 
-#java -jar bin/metabase.jar migrate release-locks
-java -jar bin/metabase.jar
+# Limit Heapsize
+export JAVA_TOOL_OPTIONS="-XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:MaxPermSize=${MEM_AVAILABLE}m -Xmx${MEM_AVAILABLE}m"
+
+#java -jar ${METABASE_HOME}/${METABASE_JAR} migrate release-locks
+java -jar ${METABASE_HOME}/${METABASE_JAR}
+
