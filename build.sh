@@ -5,8 +5,8 @@
 
 # Desired version can be set by means of an enviromental variable
 if [ -z "$METABASE_VERSION" ]; then 
-	# Default to Metabase 0.29.3
-	METABASE_VERSION=0.29.3; 
+	# Default to Metabase 0.32.1
+	METABASE_VERSION=0.32.1; 
 fi
 
 METABASE_DOWNLOAD_URI="http://downloads.metabase.com/v${METABASE_VERSION}"
