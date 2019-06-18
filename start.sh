@@ -30,5 +30,5 @@ export JAVA_TOOL_OPTIONS="-XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC 
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
 #java -jar ${METABASE_HOME}/${METABASE_JAR} migrate release-locks
-java -jar ${METABASE_HOME}/${METABASE_JAR}
+exec java -jar ${METABASE_HOME}/${METABASE_JAR}
 
